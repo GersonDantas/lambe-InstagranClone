@@ -9,7 +9,7 @@ export default props => {
         options={{email: props.email, secure: true}}
         style={styles.avatar}
       />
-      <Text style={styles.nickName}>{props.nickName}</Text>
+      <Text style={styles.nickName}>{props.nickname}</Text>
     </View>
   );
 };

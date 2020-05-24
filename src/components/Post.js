@@ -1,13 +1,17 @@
 import React, {Component} from 'react';
 import {View, Image, Dimensions, StyleSheet} from 'react-native';
 import Author from './Author';
+import Comments from './Comments'
+import AddComments from './AddComments'
 
 class Post extends Component {
   render() {
     return (
       <View style={styles.container}>
         <Image source={this.props.image} style={styles.image} />
-        <Author email="gerson@gmail.com" nickName="gerson" />
+        <Author email={this.props.email} nickname={this.props.nickname} />
+        <Comments comments={this.props.comments} />
+        <AddComments />
       </View>
     );
   }
