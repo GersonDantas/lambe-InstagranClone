@@ -14,7 +14,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 const loginOrProfileRouter = () => {
   return (
-    <Stack.Navigator initialRouteName="Profile" mode="modal">
+    <Stack.Navigator initialRouteName="Login" mode="modal">
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Register" component={Register} />
