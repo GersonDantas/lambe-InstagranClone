@@ -11,9 +11,10 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import ImagePiker from 'react-native-image-picker';
-
+const noUser = 'você precisa estar logado para adicionar imagem';
 // export default
 class AddPhoto extends Component {
   state = {
@@ -22,6 +23,10 @@ class AddPhoto extends Component {
   };
 
   pickImage = () => {
+    if (!this.props.name) {
+      Alert.alert('Falha!', noUser);
+      return;
+    }
     ImagePiker.showImagePicker(
       {
         title: 'Escolha a imagem',
@@ -36,6 +41,10 @@ class AddPhoto extends Component {
     );
   };
   save = async () => {
+    if (!this.props.name) {
+      Alert.alert('Falha!', noUser);
+      return;
+    }
     this.props.onAddPost({
       id: Math.random(),
       nickname: this.props.name,
@@ -69,6 +78,7 @@ class AddPhoto extends Component {
             placeholder="Adicione um comentário"
             value={this.state.comment}
             onChangeText={comment => this.setState({comment})}
+            editable={this.props.name != null}
           />
           <TouchableOpacity style={styles.buttom} onPress={this.save}>
             <Text style={styles.buttomText}> Salvar</Text>

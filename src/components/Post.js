@@ -1,17 +1,21 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import {View, Image, Dimensions, StyleSheet} from 'react-native';
 import Author from './Author';
-import Comments from './Comments'
-import AddComments from './AddComments'
+import Comments from './Comments';
+import AddComments from './AddComments';
 
 class Post extends Component {
   render() {
+    const addComment = this.props.name ? (
+      <AddComments postId={this.props.id} />
+    ) : null;
     return (
       <View style={styles.container}>
         <Image source={this.props.image} style={styles.image} />
         <Author email={this.props.email} nickname={this.props.nickname} />
         <Comments comments={this.props.comments} />
-        <AddComments postId={this.props.id} />
+        {addComment}
       </View>
     );
   }
@@ -28,4 +32,12 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Post;
+// export default Post;
+
+const mapStateProps = ({user}) => {
+  return {
+    name: user.name,
+  };
+};
+
+export default connect(mapStateProps)(Post);
